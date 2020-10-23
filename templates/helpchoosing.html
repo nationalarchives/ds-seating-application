@@ -3,13 +3,12 @@
 {% block content%}
 <article>
     <div class="tna-page__header">
-        <h1>Would you like help choosing your seat in the Document Reading Room(DRR)?</h1>
+        <h1>Are you researching by yourself?</h1>
     </div>
     <div class="tna-page__entry">
         <ul class="tna-ul--no-bullet options">
             <li><a href="{{ url_for('helpchoosing') }}" class="tna-button tna-button--primary">Yes</a></li>
             <li><a href="{{ url_for('seatselect') }}" class="tna-button tna-button--primary">No</a></li>
-            <li><a href="{{ url_for('idontknowhelp') }}" class="tna-button tna-button--primary">I don't know</a></li>
         </ul>
     </div>
 </article>
