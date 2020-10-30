@@ -15,6 +15,6 @@ def helpchoosing():
 def seatselect():
     return render_template("seatselect.html")
 
-@app.route("/does-not-know-if-help-choosing-seat-is-needed")
-def idontknowhelp():
-    return render_template("idontknowhelp.html")
+#@app.route("/does-not-know-if-help-choosing-seat-is-needed")
+#def idontknowhelp():
+#    return render_template("idontknowhelp.html")
