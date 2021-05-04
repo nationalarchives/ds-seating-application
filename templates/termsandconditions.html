@@ -1,0 +1,32 @@
+{% extends "layouts/layout.html" %}
+
+{% block content%}
+<article>
+    <div class="tna-page__header">
+        <h1>Please read through the terms and conditions</h1>
+    </div>
+    <div class="tna-page__entry">
+        <div>
+            The National Archives takes pride in the integrity and condition of our collection. Please read and accept our terms and conditions before ordering.
+
+            - The reading rooms are designated quiet zones. You must respect the right of other readers to research in a quiet environment.
+            - All equipment must be switched to silent mode (mobile phones, laptops, cameras etc).
+            - All camera flash functions must be disabled.
+            - You must not bend, fold, untag, overhang, separate, mark or cause damage to any document in any way.
+            - If you wish to either photograph or have a copy made of a document you must take the whole document with you, not just the part that you wish to copy.
+            - You must use the available preservation equipment to ensure that the documents are not damaged in any way. 
+            - If approached by a member of staff regarding a breach of any of the above points you must adhere to their instruction.
+
+            If you are unsure of any procedures please seek advice from a member of staff.
+
+            Failure to adhere to our rules may result in the removal of your right to use the records. 
+
+            A full set of rules can be found at: http://www.nationalarchives.gov.uk/documents/rules.pdf
+        </div>
+        <ul class="tna-ul--no-bullet options">
+            <li><a href="{{ url_for('home') }}" class="tna-button tna-button--primary">Accept</a></li>
+            <li><a href="{{ url_for('start') }}" class="tna-button tna-button--primary">Decline</a></li>
+        </ul>
+    </div>
+</article>
+{% endblock %}

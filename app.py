@@ -1,20 +1,28 @@
 from flask import Flask
 from flask import render_template
+from flask import request
 
 app = Flask(__name__)
+
+@app.route('/start')
+def start():
+    return render_template("startscreen.html")
+
+@app.route('/termsandconditions')
+def termsandconditions():
+    return render_template("termsandconditions.html")
 
 @app.route('/')
 def home():
     return render_template("home.html")
 
-@app.route('/help-choosing')
-def helpchoosing():
-    return render_template("helpchoosing.html")
 
-@app.route('/seat-select')
+@app.route('/helpchoosing', methods=["GET","POST"])
+def helpchoosing():
+    return render_template("helpchoosing.html", request=request)
+
+
+@app.route('/seatselect')
 def seatselect():
     return render_template("seatselect.html")
 
-@app.route("/does-not-know-if-help-choosing-seat-is-needed")
-def idontknowhelp():
-    return render_template("idontknowhelp.html")
