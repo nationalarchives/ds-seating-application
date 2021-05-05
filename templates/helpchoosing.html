@@ -4,29 +4,35 @@
 {{ request.form["researchingbyself"] }} {{ request.form["quietzone"] }} {{ request.form["windowseat"]}} {{ request.form["accessrequirements"]}}
 <article>
     <div class="tna-page__header">
-        <h1>Are you researching by yourself?</h1>
+        <h1>Requirements Form</h1>
     </div>
     <div class="tna-page__entry">
         <form action="" method="POST">
-            <div>Are you researching by yourself?</div>
-            <input type="radio" name="researchingbyself" value="yes" id="researchingbyself_yes" {{ "checked" if request.form["researchingbyself"] == "yes" else "" }}><label for="researchingbyself_yes">Yes</label>
-            <input type="radio" name="researchingbyself" value="no" id="researchingbyself_no" {{ "checked" if request.form["researchingbyself"] == "no" else "" }}><label for="researchingbyself_no">No</label>
+            <fieldset id="researchingbyself">
+                <legend>Are you researching by yourself?</legend>
+                <input type="radio" name="researchingbyself" value="yes" id="researchingbyself_yes" {{ "checked" if request.form["researchingbyself"] == "yes" else "" }}><label for="researchingbyself_yes">Yes</label>
+                <input type="radio" name="researchingbyself" value="no" id="researchingbyself_no" {{ "checked" if request.form["researchingbyself"] == "no" else "" }}><label for="researchingbyself_no">No</label>
+            </fieldset>
             
-            {% if id(researchingbyself_yes) == "checked" %}
-            <div>Would you prefer to be in the Quiet Zone of the DRR?</div>
-            <input type="radio" name="quietzone" value="yes" id="quietzone_yes" {{ "checked" if request.form["quietzone"] == "yes" else "" }}><label for="quietzone_yes">Yes</label>
-            <input type="radio" name="quietzone" value="no" id="quietzone_no" {{ "checked" if request.form["quietzone"] == "no" else "" }}><label for="quietzone_no">No</label>
-            {% endif %}
+            <fieldset id="quietzone">
+                <legend>Would you prefer to be in the Quiet Zone of the DRR?</legend>
+                <input type="radio" name="quietzone" value="yes" id="quietzone_yes" {{ "checked" if request.form["quietzone"] == "yes" else "" }}><label for="quietzone_yes">Yes</label>
+                <input type="radio" name="quietzone" value="no" id="quietzone_no" {{ "checked" if request.form["quietzone"] == "no" else "" }}><label for="quietzone_no">No</label>
+            </fieldset>
 
-            <div>Would you prefer to be near the window?</div>
-            <input type="radio" name="windowseat" value="yes" id="windowseat_yes" {{ "checked" if request.form["windowseat"] == "yes" else "" }}><label for="windowseat_yes">Yes</label>
-            <input type="radio" name="windowseat" value="no" id="windowseat_no" {{ "checked" if request.form["windowseat"] == "no" else "" }}><label for="windowseat_no">No</label>
+            <fieldset id="windowseat">
+                <legend>Would you prefer to be near the window?</legend>
+                <input type="radio" name="windowseat" value="yes" id="windowseat_yes" {{ "checked" if request.form["windowseat"] == "yes" else "" }}><label for="windowseat_yes">Yes</label>
+                <input type="radio" name="windowseat" value="no" id="windowseat_no" {{ "checked" if request.form["windowseat"] == "no" else "" }}><label for="windowseat_no">No</label>
+            </fieldset>
             
-            <div>Do you have any special requirements?</div>
-            <input type="radio" name="accessrequirements" value="no" id="accessrequirements_no" {{ "checked" if request.form["accessrequirements"] == "no" else "" }}><label for="accessrequirements_no">No</label>
-            <input type="radio" name="accessrequirements" value="cantbend" id="accessrequirements_cantbend" {{ "checked" if request.form["accessrequirements"] == "cantbend" else "" }}><label for="accessrequirements_cantbend">I have problems bending down</label>
-            <input type="radio" name="accessrequirements" value="wheelchair" id="accessrequirements_wheelchair" {{ "checked" if request.form["accessrequirements"] == "wheelchair" else "" }}><label for="accessrequirements_wheelchair">I require wheelchair access or prefer to have a mid-height locker</label>
-            
+            <fieldset id="accessrequirements">    
+                <legend>Do you have any accessibility requirements?</legend>
+                <input type="radio" name="accessrequirements" value="no" id="accessrequirements_no" {{ "checked" if request.form["accessrequirements"] == "no" else "" }}><label for="accessrequirements_no">No</label>
+                <input type="radio" name="accessrequirements" value="cantbend" id="accessrequirements_cantbend" {{ "checked" if request.form["accessrequirements"] == "cantbend" else "" }}><label for="accessrequirements_cantbend">I have problems bending down</label>
+                <input type="radio" name="accessrequirements" value="wheelchair" id="accessrequirements_wheelchair" {{ "checked" if request.form["accessrequirements"] == "wheelchair" else "" }}><label for="accessrequirements_wheelchair">I require wheelchair access or prefer to have a mid-height locker</label>
+            </fieldset>
+
             <input type="submit">
         </form>
     </div>
