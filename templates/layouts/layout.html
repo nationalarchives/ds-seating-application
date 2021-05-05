@@ -14,23 +14,6 @@
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script>
-            var check_researching_by_self = function() {
-                var ischecked = $("#researchingbyself_yes").is(":checked")
-                if (ischecked) { 
-                    $("#quietzone").show()
-                } else {
-                    $("#quietzone").hide()
-                    $("#quietzone_yes").prop("checked", false)
-                    $("#quietzone_no").prop("checked", false)
-                }
-            }
-            $( document ).ready(function() {
-                check_researching_by_self()
-            });
-            $("#researchingbyself").on('change', function() {
-                check_researching_by_self();
-            })  
-        </script>
+        <script src="{{url_for('static', filename='script.js')}}"></script>
     </body>
 </html>
