@@ -4,7 +4,7 @@ from flask import request
 
 app = Flask(__name__)
 
-@app.route('/start')
+@app.route('/')
 def start():
     return render_template("startscreen.html")
 
@@ -12,7 +12,7 @@ def start():
 def termsandconditions():
     return render_template("termsandconditions.html")
 
-@app.route('/')
+@app.route('/home')
 def home():
     return render_template("home.html")
 
