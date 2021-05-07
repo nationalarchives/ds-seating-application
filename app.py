@@ -2,6 +2,8 @@ from flask import Flask
 from flask import render_template
 from flask import request
 
+
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -19,7 +21,40 @@ def home():
 
 @app.route('/helpchoosing', methods=["GET","POST"])
 def helpchoosing():
-    return render_template("helpchoosing.html", request=request)
+    if request.method == "POST":
+        researchingbyself = request.form["researchingbyself"]
+        try:
+            quietzone = request.form["quietzone"]
+        except:
+            quietzone = "no"
+        windowseat = request.form["windowseat"]
+        accessrequirements = request.form["accessrequirements"]
+
+        con = sqlite3.connect('seatbooking.db')
+        cur = con.cursor()
+
+        roomID = "main"
+
+        if researchingbyself == "yes":
+            if quietzone == "yes":
+                zoneID = "quiet"
+            else:
+                zoneID = "main"
+        else:
+            zoneID = "group"
+        if windowseat == "yes":
+            hasLight = 1
+        else:
+            hasLight = 0
+        accessType = accessrequirements
+
+        cur.execute(f"SELECT * FROM seats WHERE zoneID = {zoneID} AND hasLight = {hasLight} AND accessType = {accessType}") 
+
+        con.close()
+        return render_template("recommended.html", researchingbyself = researchingbyself, quietzone= quietzone, windowseat= windowseat, accessrequirements = accessrequirements)
+    else:
+        return render_template("helpchoosing.html", request=request)
+
 
 
 @app.route('/seatselect')
