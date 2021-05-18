@@ -1,7 +1,4 @@
-from flask import Flask
-from flask import render_template
-from flask import request
-from flask import redirect
+from flask import Flask, render_template, request, redirect
 import sqlite3
 import random
 
@@ -28,6 +25,12 @@ def getSeatLength(seatList):
 @app.route('/seatchosen', methods=["POST"])
 def seatchosen():
     bookedSeat = request.form["seat"]
+    con = sqlite3.connect('seatbooking.db')
+    cur = con.cursor()
+    cur.execute(f"UPDATE seats SET isBooked=1 WHERE seatID='{bookedSeat}'")
+    print(cur.execute(f"SELECT * FROM seats WHERE seatID='{bookedSeat}'").fetchall())
+    con.close()
+    return render_template("confirmation.html", userSeat=bookedSeat)
 
 
 @app.route('/helpchoosing', methods=["GET","POST"])

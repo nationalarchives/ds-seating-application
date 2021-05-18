@@ -1,0 +1,16 @@
+{% extends "layouts/layout.html" %}
+
+{% block content%}
+<article>
+    <div class="tna-page__header">
+        <h1>Booking confirmed!</h1>
+    </div>
+    <div class="tna-page__entry">
+        <p>
+            <b>Seat:</b> {{ userSeat }}
+            <br>
+            Your booking will be ready in 30 minutes.
+        </p>
+    </div>
+</article>
+{% endblock %}
