@@ -14,5 +14,15 @@
             <b>Zone:</b> {{ zoneID }}
         </p>
     </div>
+    <form action="/seatchosen" method="POST">
+        <input type="hidden" name="seat" value="{{ seatID }}">
+        <input type="submit" value="Book this seat">
+    </form>
+    <form action="/helpchoosing" method="POST">
+        <div class="sr-only">
+            {% include 'includes/helpchoosingform.html' %}
+        </div>
+        <input type="submit" value="Choose a different seat">
+    </form>
 </article>
 {% endblock %}
