@@ -27,7 +27,7 @@
             
             <fieldset id="accessrequirements">    
                 <legend>Do you have any accessibility requirements?</legend>
-                <input type="radio" name="accessrequirements" value="no" id="accessrequirements_no" required {{ "checked" if request.form["accessrequirements"] == "no" else "" }}><label for="accessrequirements_no">No</label>
+                <input type="radio" name="accessrequirements" value="none" id="accessrequirements_none" required {{ "checked" if request.form["accessrequirements"] == "none" else "" }}><label for="accessrequirements_none">None</label>
                 <input type="radio" name="accessrequirements" value="cantbend" id="accessrequirements_cantbend" required {{ "checked" if request.form["accessrequirements"] == "cantbend" else "" }}><label for="accessrequirements_cantbend">I have problems bending down</label>
                 <input type="radio" name="accessrequirements" value="wheelchair" id="accessrequirements_wheelchair" required {{ "checked" if request.form["accessrequirements"] == "wheelchair" else "" }}><label for="accessrequirements_wheelchair">I require wheelchair access or prefer to have a mid-height locker</label>
             </fieldset>

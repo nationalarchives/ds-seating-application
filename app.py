@@ -1,8 +1,8 @@
 from flask import Flask
 from flask import render_template
 from flask import request
-
-
+import sqlite3
+import random
 
 app = Flask(__name__)
 
@@ -37,21 +37,31 @@ def helpchoosing():
 
         if researchingbyself == "yes":
             if quietzone == "yes":
-                zoneID = "quiet"
+                zone = "quiet"
             else:
-                zoneID = "main"
+                zone = "main"
         else:
-            zoneID = "group"
+            zone = "group"
         if windowseat == "yes":
             hasLight = 1
         else:
             hasLight = 0
         accessType = accessrequirements
 
-        cur.execute(f"SELECT * FROM seats WHERE zoneID = {zoneID} AND hasLight = {hasLight} AND accessType = {accessType}") 
 
-        con.close()
-        return render_template("recommended.html", researchingbyself = researchingbyself, quietzone= quietzone, windowseat= windowseat, accessrequirements = accessrequirements)
+        availableSeats = cur.execute(f"SELECT * FROM seats WHERE zoneID='{zone}' AND hasLight={hasLight} AND accessType='{accessType}' AND isBooked=0").fetchall()
+        
+        count = 0
+        for i in availableSeats:
+            count += 1
+        randomSeat = availableSeats[random.randint(0, count-1)]
+
+        selectedSeat = randomSeat[0]
+        selectedRoom = randomSeat[2]
+        selectedZone = randomSeat[3]
+
+        con.close() 
+        return render_template("recommended.html", seatID = selectedSeat, roomID = selectedRoom, zoneID = selectedZone)
     else:
         return render_template("helpchoosing.html", request=request)
 
