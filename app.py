@@ -60,6 +60,8 @@ def helpchoosing():
         selectedRoom = randomSeat[2]
         selectedZone = randomSeat[3]
 
+
+        
         con.close() 
         return render_template("recommended.html", seatID = selectedSeat, roomID = selectedRoom, zoneID = selectedZone)
     else:
