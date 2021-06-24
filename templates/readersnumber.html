@@ -10,10 +10,12 @@
             <fieldset id="readersnumber">
                 <legend>Please enter your readers number</legend>
                 <label for="readersnumber">Readers number:</label>
-                <input type="text" name="readersnumber" id="readersnumber" required>
+                <input type="text" name="readersnumber" id="readersnumber" required autocomplete="off">
             </fieldset>
-
             <input type="submit">
+            <p class="errorMessage">
+                {{ errorMessage }}
+            </p>
         </form>
     </div>
 </article>

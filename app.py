@@ -12,9 +12,28 @@ def start():
 def termsandconditions():
     return render_template("termsandconditions.html")
 
-@app.route('/home')
-def home():
-    return render_template("home.html")
+@app.route('/readersnumber', methods=["GET","POST"])
+def readersnumber():
+    if request.method == "POST":
+        givenReaders = request.form["readersnumber"]
+        try:
+            int(givenReaders)
+        except:
+            return render_template("readersnumber.html", errorMessage="Invalid reader's number: invalid format")
+        print(len(givenReaders))
+        if len(givenReaders) != 6:
+            return render_template("readersnumber.html", errorMessage="Invalid reader's number: invalid format")
+        con = sqlite3.connect('readersnumber.db')
+        cur = con.cursor()
+        readersSearch = cur.execute(f"SELECT * FROM readers WHERE readersNumber={givenReaders}").fetchall()
+        if len(readersSearch) == 0:
+            return render_template("readersnumber.html", errorMessage="Invalid reader's number: reader's number not found")
+        global readersNumber
+        readersNumber = readersSearch[0][0]
+        global readersName
+        readersName = readersSearch[0][1]
+        return render_template("home.html")
+    return render_template("readersnumber.html", errorMessage="")
 
 def getSeatLength(seatList):
     count = 0
@@ -28,7 +47,8 @@ def seatchosen():
     con = sqlite3.connect('seatbooking.db')
     cur = con.cursor()
     cur.execute(f"UPDATE seats SET isBooked=1 WHERE seatID='{bookedSeat}'")
-    print(cur.execute(f"SELECT * FROM seats WHERE seatID='{bookedSeat}'").fetchall())
+    cur.execute(f"UPDATE seats SET bookingHolder={readersNumber} WHERE seatID='{bookedSeat}'")
+    con.commit()
     con.close()
     return render_template("confirmation.html", userSeat=bookedSeat)
 
@@ -61,7 +81,6 @@ def helpchoosing():
         else:
             hasLight = 0
         accessType = accessrequirements
-
 
         availableSeats = cur.execute(f"SELECT * FROM seats WHERE roomID='{roomID}' AND zoneID='{zone}' AND hasLight={hasLight} AND accessType='{accessType}' AND isBooked=0").fetchall()
         
