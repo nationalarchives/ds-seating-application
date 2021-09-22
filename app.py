@@ -20,7 +20,6 @@ def readersnumber():
             int(givenReaders)
         except:
             return render_template("readersnumber.html", errorMessage="Invalid reader's number: invalid format")
-        print(len(givenReaders))
         if len(givenReaders) != 6:
             return render_template("readersnumber.html", errorMessage="Invalid reader's number: invalid format")
         con = sqlite3.connect('readersnumber.db')
@@ -109,8 +108,6 @@ def helpchoosing():
         return render_template("helpchoosing.html", request=request)
 
 
-
 @app.route('/seatselect')
 def seatselect():
     return render_template("seatselect.html")
-

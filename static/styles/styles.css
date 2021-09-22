@@ -16,3 +16,40 @@
 #errorMessage {
     color: red;
 }
+
+.tna-header {
+    padding: 1rem 0 0 0;
+  }
+  .tna-header__home-link {
+    width: 100%;
+    max-width: 8.938rem;
+  }
+  .tna-header__logo--beta {
+    max-width: 8.938rem;
+  }
+  .tna-header__description {
+    font-size: 1.2rem;
+    /* margin-left: auto;
+    margin-top: auto; */
+    margin-bottom: 0;
+    padding-top: 1rem;
+  }
+  .tna-header__description-heading {
+    font-weight: bold;
+  }
+  @media only screen and (min-width: 48rem) {
+    .tna-header {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+    }
+    .tna-header__description {
+      padding-top: 0;
+      padding-left: 5rem;
+      max-width: 37.5rem;
+      text-align: right;
+    }
+    .tna-header__description-heading {
+      text-align: right;
+    }
+  }
