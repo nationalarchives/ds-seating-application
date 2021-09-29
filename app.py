@@ -25,6 +25,7 @@ def readersnumber():
         con = sqlite3.connect('readersnumber.db')
         cur = con.cursor()
         readersSearch = cur.execute(f"SELECT * FROM readers WHERE readersNumber={givenReaders}").fetchall()
+        con.close()
         if len(readersSearch) == 0:
             return render_template("readersnumber.html", errorMessage="Invalid reader's number: reader's number not found")
         global readersNumber
@@ -49,6 +50,12 @@ def seatchosen():
     cur.execute(f"UPDATE seats SET bookingHolder={readersNumber} WHERE seatID='{bookedSeat}'")
     con.commit()
     con.close()
+    con2 = sqlite3.connect('readersnumber.db')
+    cur2 = con2.cursor()
+    cur2.execute(f"UPDATE readers SET readersSeatID='{bookedSeat}' WHERE readersNumber={readersNumber}")
+    cur2.execute(f"UPDATE readers SET hasBooking=1 WHERE readersNumber={readersNumber}")
+    con2.commit()
+    con2.close()
     return render_template("confirmation.html", userSeat=bookedSeat)
 
 
@@ -106,8 +113,3 @@ def helpchoosing():
         return render_template("recommended.html", seatID = selectedSeat, roomID = selectedRoom, zoneID = selectedZone)
     else:
         return render_template("helpchoosing.html", request=request)
-
-
-@app.route('/seatselect')
-def seatselect():
-    return render_template("seatselect.html")

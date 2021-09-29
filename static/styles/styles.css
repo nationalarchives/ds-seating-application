@@ -54,16 +54,6 @@
     }
   }
 
-.tna-button {
-  text-decoration: none;
-  background-color: #134571 !important;
-  color: #fff;
-  border: 0;
-  padding: 1rem 1.3rem;
-  font-weight: bold;
-  margin: 0.5rem 0;
-  border: none;
-}
 .tna-button:hover {
   background-color: #fff;
   color: #26262a;
@@ -95,8 +85,9 @@
   outline-offset: 0.125rem;
 }
 
-
-
+.tna-form .checkbox label, .tna-form .radio label {
+  width: auto;
+}
 
 .tna-form--error .tna-form__error-summary {
   padding: 1rem 2rem;
@@ -243,4 +234,24 @@
 .tna-form__optional {
   font-size: 0.9rem;
   color: #636363;
+}
+
+.tna-form fieldset {
+  margin-bottom: 2rem;
+}
+
+input[type=checkbox], input[type=radio] {
+  box-sizing: border-box;
+  padding: 0;
+  margin-right: 1rem;
+}
+
+.form-holder {
+  width:45%;
+}
+
+.form-holder input[type="submit"] {
+  margin-bottom: 1rem;
+  width: 50%;
+  min-width: 15rem;
 }
