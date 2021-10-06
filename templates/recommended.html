@@ -1,0 +1,30 @@
+{% extends "layouts/layout.html" %}
+
+{% block content%}
+<article>
+    <div class="tna-page__header">
+        <h1>We recommend</h1>
+    </div>
+    <div class="tna-page__entry">
+        <p>
+            <b>Seat:</b> {{ seatID }}
+            <br>
+            <b>Room:</b> {{ roomID }}
+            <br>
+            <b>Zone:</b> {{ zoneID }}
+        </p>
+    </div>
+    <div class="form-holder">
+        <form class="tna-form" action="/seatchosen" method="POST">
+            <input type="hidden" name="seat" value="{{ seatID }}">
+            <input class="tna-button--primary" type="submit" value="Book this seat">
+        </form>
+        <form action="/helpchoosing" method="POST">
+            <div class="sr-only">
+                {% include 'includes/helpchoosingform.html' %}
+            </div>
+            <input class="tna-button--primary" type="submit" value="Choose a different seat">
+        </form>
+    </div>
+</article>
+{% endblock %}

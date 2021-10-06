@@ -1,0 +1,22 @@
+{% extends "layouts/layout.html" %}
+
+{% block content%}
+<article>
+    <div class="tna-page__header">
+        <h1>Requirements Form</h1>
+    </div>
+    <div class="tna-page__entry">
+        <form class="tna-form" action="" method="POST">
+            <fieldset id="readersnumber">
+                <legend>Please enter your readers number</legend>
+                <label for="readers-number">Readers number</label>
+                <input type="text" name="readersnumber" id="readers-number" required autocomplete="off" pattern="\d{6}">
+            </fieldset>
+            <input class="tna-button--primary" type="submit">
+            <p class="errorMessage">
+                {{ errorMessage }}
+            </p>
+        </form>
+    </div>
+</article>
+{% endblock %}
